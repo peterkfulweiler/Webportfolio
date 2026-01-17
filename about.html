@@ -12,6 +12,12 @@
       color: #000000;
       margin: 40px;
       line-height: 1.4;
+      min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      /* overflow: hidden; /* prevent images leaving screen */
+       position: relative;  
+
     }
 
     /* Top bar */
@@ -53,6 +59,23 @@
     li {
       margin-bottom: 6px;
     }
+    footer {
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      line-height: 1.6;
+      margin-top: 150px;
+      z-index: 1; 
+    }
+
+    footer a {
+      color: #0000ee;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -73,8 +96,8 @@
 
     <h2>Exhibitions</h2>
     <ul>
+        <li>Yale Graduate Conference in Religion and Ecology, Yale Divinity School Gallery, New Haven, CT, 2026</li>
       <li>Senior Thesis Exhibition, Ezra and Cecile Zilkha Gallery, Middletown, CT, 2023</li>
-      <li>Yale Graduate Conference in Religion and Ecology, Yale Divinity School Gallery, New Haven, CT, 2025</li>
     </ul>
 
     <h2>Awards and Residencies</h2>
@@ -86,8 +109,15 @@
          <ul>
       <div><a href="https://www.wesleyan.edu/about/news/2023/05/senior-thesis-peter-ketels-fulweiler-23-comments-on-ai-and-surveillance-with-sculpture.html">Senior Thesis: Peter Ketels Fulweiler ’23 Comments on AI and Surveillance with Sculpture</a></div>
     </ul>
-    
+   
   </div>
+
+   <footer>
+     <p>
+      <a href="mailto:peterkfulweiler@gmail.com">peterkfulweiler@gmail.com</a> |
+      <a href="tel:185792842178">857-928-42178</a>
+    </p>
+  </footer>
 
 </body>
 </html>
