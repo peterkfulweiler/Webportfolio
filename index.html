@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Peter Ketels Fulweiler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: Times, "Times New Roman", serif;
+      background: #ffffff;
+      color: #000000;
+      margin: 40px;
+      line-height: 1.4;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* prevent images leaving screen */
+      position: relative;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: normal;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav a {
+      font-size: 18px;
+      color: #00ee18;
+      text-decoration: underline;
+    }
+
+    nav a:hover {
+      text-decoration: none;
+    }
+
+    footer {
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      line-height: 1.6;
+      margin-top: 0;
+      z-index: 1;
+    }
+
+    footer a {
+      color: #0000ee;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      text-decoration: none;
+    }
+
+    /* bouncing images */
+    .bouncing-img {
+      position: absolute;
+      width: 100px; /* change as needed */
+      height: auto;
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.3s ease, z-index 0s;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Peter Ketels Fulweiler</h1>
+  </header>
+
+  <div class="content">
+    <nav>
+      <a href="works.html">works</a>
+      <a href="commercial.html">commercial</a>
+      <a href="publicworks.html">public works</a>
+      <a href="painting.html">painting</a>
+      <a href="about.html">about</a>
+    </nav>
+  </div>
+
+  <footer>
+     <p>
+      <a href="mailto:peterkfulweiler@gmail.com">peterkfulweiler@gmail.com</a> |
+      <a href="tel:185792842178">857-928-42178</a>
+    </p>
+  </footer>
+
+  <!-- bouncing images -->
+  <img class="bouncing-img" id="bouncer1">
+  <img class="bouncing-img" id="bouncer2">
+  <img class="bouncing-img" id="bouncer3">
+
+  <script>
+    // 1️⃣ List of your asset images
+    const assetImages = [
+      'assets/painting/IMG_3858.jpeg',
+      'assets/painting/repostordie.png',
+      'assets/works/TermsandConitions.jpg',
+      'assets/works/AshBorerGraveyard.jpg',
+      'assets/works/2023_sculpture_pfulweiler_006.jpg',
+      'assets/works/2023_sculpture_pfulweiler_002.jpg',
+      'assets/works/2023_sculpture_pfulweiler_003.jpg',
+      'assets/works/2023_sculpture_pfulweiler_005.jpg',
+      'assets/works/2023_sculpture_pfulweiler_003.jpg',
+      'assets/public-works/IMG_4296.jpg',
+      'assets/public-works/jackupstairs1.jpg',
+      'assets/public-works/jackupstairs3.jpg',
+      'assets/public-works/jackupstairs5.jpg',
+      'assets/public-works/signfront.jpg',
+    ];
+    const backArrow = document.getElementById('backArrow');
+
+
+    function getRandomImage() {
+      return assetImages[Math.floor(Math.random() * assetImages.length)];
+    }
+
+    // 2️⃣ Initialize bouncing images
+    const images = [
+      {el: document.getElementById('bouncer1'), x: 0.5, y: 0.5, left: 100, top: 100},
+      {el: document.getElementById('bouncer2'), x: 0.7, y: 0.7, left: 300, top: 200},
+      {el: document.getElementById('bouncer3'), x: 0.2, y: 0.1, left: 200, top: 100}
+    ];
+
+    // Set random starting images
+    images.forEach(img => {
+      img.el.src = getRandomImage();
+      img.el.style.left = img.left + "px";
+      img.el.style.top = img.top + "px";
+      img.el.style.width = "100px";
+      img.el.style.height = "auto";
+    });
+
+    let animationRunning = true;
+
+    // 3️⃣ Bouncing function
+    function animate() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      images.forEach(img => {
+        if (!img.el.classList.contains('expanded')) {
+        img.left += img.x;
+        img.top += img.y;
+
+        if(img.left + img.el.offsetWidth >= width || img.left <= 0) img.x *= -1;
+        if(img.top + img.el.offsetHeight >= height || img.top <= 0) img.y *= -1;
+
+        img.el.style.left = img.left + "px";
+        img.el.style.top = img.top + "px";
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+ // Function to randomly change an image at a random interval
+    function randomizeImage(img) {
+      const randomTime = Math.random() * 10000 + 4000; // 2000–6000 ms
+      setTimeout(() => {
+         if (!img.el.classList.contains('expanded')) {
+        img.el.src = getRandomImage();
+         }
+        randomizeImage(img); // reset timer with new random interval
+      }, randomTime);
+    }
+
+    images.forEach(img => randomizeImage(img));
+  </script>
+
+</body>
+</html>

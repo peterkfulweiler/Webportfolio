@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Works — Peter Ketels Fulweiler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: Times, "Times New Roman", serif;
+      background: #ffffff;
+      color: #000000;
+      margin: 40px;
+      line-height: 1.4;
+    }
+
+    /* Top bar */
+    .top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 80px;
+      font-size: 16px;
+    }
+
+    a {
+      color: #0000ee;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    /* Works list */
+    .works {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .works a {
+      display: block;
+      margin: 20px 0;
+    }
+
+    /* Hover preview image */
+    .preview {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+      border: 1px solid #000;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <div>public works</div>
+    <div><a href="index.html">home</a></div>
+  </div>
+
+  <div class="works">
+    <a href="oneway.html"
+       data-image="assets/public-works/signfront.jpg">
+       Avon One Way
+    </a>
+
+     <a href="zipline.html"
+       data-image="assets/public-works/penzipline.jpg">
+       East Rock Zipline
+
+ <a href="stepsoverfence.html"
+       data-image="assets/public-works/jackupstairs1.jpg">
+       Steps Over Fence
+    </a>
+
+    </a>
+  </div>
+
+  <!-- Hover preview image -->
+  <img class="preview" id="preview">
+
+  <script>
+    const preview = document.getElementById('preview');
+    const links = document.querySelectorAll('.works a');
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        preview.src = link.dataset.image;
+        preview.style.display = 'block';
+      });
+
+      link.addEventListener('mouseleave', () => {
+        preview.style.display = 'none';
+      });
+
+      link.addEventListener('mousemove', (e) => {
+        const rect = preview.getBoundingClientRect();
+        preview.style.left = (e.clientX - rect.width/2) + 'px';
+        preview.style.top = (e.clientY + 30)  + 'px';
+      });
+    });
+  </script>
+
+</body>
+</html>
+
